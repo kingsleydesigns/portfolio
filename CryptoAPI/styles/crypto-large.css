@@ -1,0 +1,81 @@
+@media screen and (min-width: 818px) {
+    .navigation {
+        background-color: #333;
+        color: white;
+       
+    }
+    
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-around; 
+    }
+    
+    .navigation a {
+        display: flex;
+        color: white;
+        font-weight: bolder;
+        font-size: large;
+    }
+    
+    .navigation a:hover {
+        background: none;
+        text-decoration: underline;
+        text-decoration-color: dimgrey;
+        text-decoration-thickness: 0.2em;
+        transform: scale(1.05);
+        transition: 0.3s ease-in-out;
+    }
+    
+    .navigation a.tab.active {
+        text-decoration: underline ;
+        text-decoration-color: dimgrey;
+        text-decoration-thickness: 0.3em;
+    }
+
+    .header-logo {
+        justify-content: center;
+    }
+
+    #menu {
+		display: none; 
+	}
+
+    .chart{
+        height: 300px;
+        max-width: 100%;
+    }
+    
+    #toggleTheme{
+        background-color: black;
+        color: white;
+        float: right;
+        padding: 3px;
+        margin-top: 0.5rem;
+        border-radius: 7px;
+        transition: transform 0.2s ease-in-out; /* Smooth animation */
+    }
+
+    #toggleTheme:hover {
+        transform: scale(1.06); /* Slightly enlarges the button */
+    }
+
+    input {
+        padding-left: 1rem;
+        margin-top: -1.5rem;
+    }
+    
+    .crypto-table{
+        table-layout: auto;
+    }
+
+    .market-cap.full-figure {
+        display: inline; /* or block depending on layout */
+    }
+
+    .market-cap.abbreviated {
+        display: none;
+    }
+
+
+}

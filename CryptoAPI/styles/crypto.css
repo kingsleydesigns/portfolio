@@ -1,0 +1,206 @@
+/* Reset and Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg width='84' height='48' viewBox='0 0 84 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h12v6H0V0zm28 8h12v6H28V8zm14-8h12v6H42V0zm14 0h12v6H56V0zm0 8h12v6H56V8zM42 8h12v6H42V8zm0 16h12v6H42v-6zm14-8h12v6H56v-6zm14 0h12v6H70v-6zm0-16h12v6H70V0zM28 32h12v6H28v-6zM14 16h12v6H14v-6zM0 24h12v6H0v-6zm0 8h12v6H0v-6zm14 0h12v6H14v-6zm14 8h12v6H28v-6zm-14 0h12v6H14v-6zm28 0h12v6H42v-6zm14-8h12v6H56v-6zm0-8h12v6H56v-6zm14 8h12v6H70v-6zm0 8h12v6H70v-6zM14 24h12v6H14v-6zm14-8h12v6H28v-6zM14 8h12v6H14V8zM0 8h12v6H0V8z' fill='%23161518' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+header, main, .section-content {
+    width: 100%;
+}
+
+header {
+    max-width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 1em;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.header-logo .logo {
+    width: 40px; /* Adjust logo size */
+    height: 40px;
+}
+
+
+h1 {
+    padding: 2rem;
+}
+
+h2{
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+#menu {
+	font-size: 1.5rem;
+	border: 0;
+	background: none;
+	color: white;
+	position: absolute;
+	top: 3.8rem;
+	right: 1rem;
+}
+
+#menu::before {
+	content: "☰";
+}
+
+#menu.open::before {
+	content: "❎";
+}
+
+#toggleTheme{
+    background-color: black;
+    color: white;
+    padding: 3px;
+    float: right;
+    border-radius: 7px;
+    margin-top: 0.2rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+.navigation a {
+	display: none;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.navigation a:hover { 
+	background-color: black;
+	color: white;
+	font-weight: 700;
+}
+
+.open a {
+	display: block;
+}
+
+.section-content {
+    padding: 2em;
+    text-align: center;
+    font-weight: bold;
+    font-size: large;
+    max-width: 100%;
+}
+
+.section-content.active {
+    display: block; /* Show the active section */
+}
+
+.hidden {
+    display: none;
+}
+
+.chart {
+    height: 100%;
+    width: auto;
+}
+
+.market-cap.full-figure {
+    display: none; 
+}
+
+/* Table Styles */
+.crypto-table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    border-color: black;
+}
+
+body.dark-mode table {
+    border-color: white;
+}
+
+body.dark-mode table tbody tr:nth-child(even) {
+    background-color: black;
+}
+
+body.dark-mode table th {
+    background-color: black;
+    font-weight: bold;
+}
+
+body.dark-mode table tbody tr:hover {
+    background-color: rgb(79, 87, 87);
+}
+
+thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.crypto-table th,
+.crypto-table td {
+    padding: 1em;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.crypto-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.crypto-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.crypto-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.crypto-table img {
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+.price-change-positive {
+    color: green;
+    font-weight: bold;
+}
+  
+.price-change-negative {
+    color: red;
+    font-weight: bold;
+}
+
+/* Positive change (green) */
+.positive-change {
+    color: green;
+    font-weight: bold;
+}
+
+/* Negative change (red) */
+.negative-change {
+    color: red;
+    font-weight: bold;
+}
