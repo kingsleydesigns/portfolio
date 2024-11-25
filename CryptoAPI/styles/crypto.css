@@ -28,6 +28,7 @@ header {
     color: white;
     padding: 1em;
 }
+
 .header-logo {
     display: flex;
     align-items: center;
@@ -38,11 +39,15 @@ header {
 .header-logo .logo {
     width: 40px; /* Adjust logo size */
     height: 40px;
+    margin-right: 10rem;
 }
 
 
 h1 {
+    font-size: 1rem;
     padding: 2rem;
+    margin-left: 1.5rem;
+    white-space: nowrap;
 }
 
 h2{
@@ -57,7 +62,7 @@ h2{
 	background: none;
 	color: white;
 	position: absolute;
-	top: 3.8rem;
+	top: 3.5rem;
 	right: 1rem;
 }
 
@@ -127,24 +132,107 @@ nav ul {
 }
 
 /* Table Styles */
-.crypto-table {
-    table-layout: fixed;
+
+/* Wrapper for horizontal scrolling */
+.table-wrapper {
+    overflow-x: auto;
     width: 100%;
-    border-collapse: collapse;
-    margin: 1em 0;
-    border-color: black;
+    position: relative;
+    margin-top: 1em;
 }
 
+/* Base table styles */
+.crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Sticky Table Header */
+.crypto-table thead {
+    position: sticky;
+    top: 0; /* Keeps the table header at the top of the viewport */
+    z-index: 1; /* Ensure the header stays above the table body */
+    background-color: #f4f4f4;
+}
+
+.crypto-table th {
+    padding: 0.75em;
+    text-align: left;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    background-color: inherit; /* Inherit from thead to maintain consistency */
+}
+
+/* Sticky First Two Columns */
+.crypto-table th:nth-child(1),
+.crypto-table td:nth-child(1) {
+    position: sticky;
+    left: 0;
+    background-color: white; /* Match table background */
+    z-index: 2; /* Keep the first column above the body content */
+}
+
+.crypto-table th:nth-child(2),
+.crypto-table td:nth-child(2) {
+    position: sticky;
+    left: 40px; /* Adjust to match the width of the first column */
+    background-color: white;
+    z-index: 1; /* Slightly lower z-index for the second column */
+}
+
+/* Table Cells */
+.crypto-table td {
+    padding: 0.75em;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.9em;
+}
+
+/* Ensure row demarcation lines are visible */
+.crypto-table tbody tr {
+    border-bottom: 1px solid #ddd; /* Add bottom borders to table rows */
+}
+
+/* Alternating Row Colors */
+.crypto-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect */
+.crypto-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+
+/* Ensure images align */
+.crypto-table img {
+    vertical-align: middle;
+    margin-right: 0.5em;
+}
+
+/* Dark Mode Adjustments */
 body.dark-mode table {
     border-color: white;
 }
 
+body.dark-mode table th:nth-child(1),
+body.dark-mode table td:nth-child(1), 
+body.dark-mode table th:nth-child(2),
+body.dark-mode table td:nth-child(2) {
+    background-color: black;
+
+}
 body.dark-mode table tbody tr:nth-child(even) {
     background-color: black;
 }
 
 body.dark-mode table th {
     background-color: black;
+    color: white;
     font-weight: bold;
 }
 
@@ -152,36 +240,6 @@ body.dark-mode table tbody tr:hover {
     background-color: rgb(79, 87, 87);
 }
 
-thead {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.crypto-table th,
-.crypto-table td {
-    padding: 1em;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.crypto-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
-.crypto-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.crypto-table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-.crypto-table img {
-    vertical-align: middle;
-    margin-right: 0.5em;
-}
 
 .price-change-positive {
     color: green;

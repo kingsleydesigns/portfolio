@@ -33,6 +33,10 @@
         text-decoration-thickness: 0.3em;
     }
 
+    h1{
+        font-size: larger;
+    }
+
     .header-logo {
         justify-content: center;
     }
@@ -67,8 +71,10 @@
     
     .crypto-table{
         table-layout: auto;
+        width: 100%;
     }
 
+    
     .market-cap.full-figure {
         display: inline; /* or block depending on layout */
     }

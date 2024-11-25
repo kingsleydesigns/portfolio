@@ -36,72 +36,80 @@
             <canvas id="coinChart"></canvas>
         </div>
         <section id="crypto-content">
-            <table id="crypto-table" class="crypto-table">
-                <thead>
-                    <tr>
+            <div class="table-wrapper">
+                <table id="crypto-table" class="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th title="The name of the Coin,symbol and logo">Coin</th>
+                            <th title="The price of the coin">Price</th>
+                            <th title="The percentage change in price over the last 24 hours">24h Change</th>
+                            <th title="The total value or size of the coin">Market Cap</th>
+                        </tr>
+                    </thead>
+                    <tbody id="crypto-table-body">
+                        <!-- Dynamic content will go here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <div id="trending" class="section-content hidden">Trending coins
+        <section id="crypto-content">
+            <div class="table-wrapper">
+                <table id="crypto-table" class="crypto-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th title="The name of the Coin,symbol and logo">Coin</th>
+                            <th title="The price of the coin">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="trending-table-body">
+                        <!-- Dynamic content will go here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+    <div id="gainers" class="section-content hidden">Top Gainers
+        <section id="crypto-content">
+            <div class="table-wrapper">
+                <table id="crypto-table" class="crypto-table">
+                    <thead>
+                        <tr>
                         <th>#</th>
                         <th title="The name of the Coin,symbol and logo">Coin</th>
                         <th title="The price of the coin">Price</th>
                         <th title="The percentage change in price over the last 24 hours">24h Change</th>
                         <th title="The total value or size of the coin">Market Cap</th>
-                    </tr>
-                </thead>
-                <tbody id="crypto-table-body">
-                    <!-- Dynamic content will go here -->
-                </tbody>
-            </table>
-        </section>
-    </div>
-    <div id="trending" class="section-content hidden">Trending coins
-        <section id="crypto-content">
-            <table id="crypto-table" class="crypto-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th title="The name of the Coin,symbol and logo">Coin</th>
-                        <th title="The price of the coin">Price</th>
-                    </tr>
-                </thead>
-                <tbody id="trending-table-body">
-                    <!-- Dynamic content will go here -->
-                </tbody>
-            </table>
-        </section>
-    </div>
-    <div id="gainers" class="section-content hidden">Top Gainers
-        <section id="crypto-content">
-            <table id="crypto-table" class="crypto-table">
-                <thead>
-                    <tr>
-                      <th>#</th>
-                      <th title="The name of the Coin,symbol and logo">Coin</th>
-                      <th title="The price of the coin">Price</th>
-                      <th title="The percentage change in price over the last 24 hours">24h Change</th>
-                      <th title="The total value or size of the coin">Market Cap</th>
-                    </tr>
-                  </thead>
-                  <tbody id="gainers-table-body">
-                    <!-- Dynamic content will go here -->
-                  </tbody>
+                        </tr>
+                    </thead>
+                    <tbody id="gainers-table-body">
+                        <!-- Dynamic content will go here -->
+                    </tbody>
                 </table>
+            </div>
         </section>
     </div>
     <div id="losers" class="section-content hidden">Top Losers
         <section id="crypto-content">
-            <table id="crypto-table" class="crypto-table">
-                <thead>
-                    <tr>
-                      <th>#</th>
-                      <th title="The name of the Coin,symbol and logo">Coin</th>
-                      <th title="The price of the coin">Price</th>
-                      <th title="The percentage change in price over the last 24 hours">24h Change</th>
-                      <th title="The total value or size of the coin">Market Cap</th>
-                    </tr>
-                  </thead>
-                  <tbody id="losers-table-body">
-                    <!-- Dynamic content will go here -->
-                  </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table id="crypto-table" class="crypto-table">
+                    <thead>
+                        <tr>
+                        <th>#</th>
+                        <th title="The name of the Coin,symbol and logo">Coin</th>
+                        <th title="The price of the coin">Price</th>
+                        <th title="The percentage change in price over the last 24 hours">24h Change</th>
+                        <th title="The total value or size of the coin">Market Cap</th>
+                        </tr>
+                    </thead>
+                    <tbody id="losers-table-body">
+                        <!-- Dynamic content will go here -->
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 </main>
