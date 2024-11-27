@@ -34,19 +34,20 @@ header {
     align-items: center;
     justify-content: center;
     margin: 1rem;
+    margin-right: 4.2rem;
 }
 
 .header-logo .logo {
     width: 40px; /* Adjust logo size */
     height: 40px;
-    margin-right: 10rem;
+    padding: 0;
 }
 
 
 h1 {
     font-size: 1rem;
     padding: 2rem;
-    margin-left: 1.5rem;
+    padding-right: 0.5rem;
     white-space: nowrap;
 }
 
@@ -127,6 +128,11 @@ nav ul {
     width: auto;
 }
 
+.other-chart canvas {
+    width: auto;
+    height: 100%;
+}
+
 .market-cap.full-figure {
     display: none; 
 }
@@ -146,6 +152,7 @@ nav ul {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
+    font-size: 0.7rem;
 }
 
 /* Sticky Table Header */
@@ -176,7 +183,7 @@ nav ul {
 .crypto-table th:nth-child(2),
 .crypto-table td:nth-child(2) {
     position: sticky;
-    left: 40px; /* Adjust to match the width of the first column */
+    left: 35px; /* Adjust to match the width of the first column */
     background-color: white;
     z-index: 1; /* Slightly lower z-index for the second column */
 }

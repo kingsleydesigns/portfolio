@@ -32,11 +32,24 @@ hamButton.addEventListener('click', () => {
 });
 
 
-
 const toggleButton = document.getElementById('toggleTheme');
+
+// Check for dark mode preference in localStorage when the page loads
+if (localStorage.getItem('dark-mode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+}
+
+// Toggle dark mode when the button is clicked
 toggleButton.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-});  
+
+    // Save the current theme state to localStorage
+    if (document.body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'enabled');
+    } else {
+        localStorage.removeItem('dark-mode');
+    }
+}); 
 
 // Function to switch between sections
 function switchSection(sectionId) {
@@ -44,8 +57,12 @@ function switchSection(sectionId) {
     for (let key in sections) {
         sections[key].classList.add('hidden');
     }
+    
     // Show the selected section
     sections[sectionId].classList.remove('hidden');
+    
+    // Update the active section
+    activeSection = sectionId;
 }
 
 // Debounced fetch functions
@@ -121,9 +138,12 @@ function fetchTop() {
                     <td colspan="5">Failed to load Top Coins. Please try again later.</td>
                 </tr>
             `;
+            document.getElementById('coinChart').innerHTML = 'Error loading chart data'; // Show error in chart area
         });
 }
 
+
+let trendingChart = null;
 // Function to fetch and display Trending coins
 function fetchTrending() {
     const trendingUrl = 'https://api.coingecko.com/api/v3/search/trending';
@@ -134,13 +154,13 @@ function fetchTrending() {
         .then(response => response.json())
         .then(btcData => {
             const btcToUsd = btcData.bitcoin.usd; // Get BTC-USD conversion rate
-        
+
             // Fetch trending coins
             return fetch(trendingUrl)
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('trending-table-body');
-                    tableBody.innerHTML = data.coins.map((crypto, index) => {
+                    tableBody.innerHTML = data.coins.slice(0, 15).map((crypto, index) => {  // Show top 15 coins
                         // Convert BTC price to USD
                         const priceInUsd = (crypto.item.price_btc * btcToUsd).toFixed(2);
 
@@ -156,18 +176,66 @@ function fetchTrending() {
                             </tr>
                         `;
                     }).join('');
+
+                    // Now, let's display the trending chart
+                    const labels = data.coins.slice(0, 10).map(crypto => crypto.item.symbol.toUpperCase()); // Top 10 coin names
+                    const prices = data.coins.slice(0, 10).map(crypto => (crypto.item.price_btc * btcToUsd).toFixed(2)); // Top 10 prices in USD
+
+                    // Get the context of the canvas element
+                    const ctx = document.getElementById('trendingChart').getContext('2d');
+
+                    // Check if a chart already exists on the canvas and destroy it
+                    if (trendingChart !== null) {
+                        trendingChart.destroy();
+                    }
+                    // Create the bar chart
+                    trendingChart = new Chart(ctx, {
+                        type: 'bar', // Bar chart
+                        data: {
+                            labels: labels, // x-axis labels (coin names)
+                            datasets: [{
+                                label: 'Prices in USD',
+                                data: prices, // y-axis data (prices)
+                                backgroundColor: 'rgba(255, 159, 64, 0.2)', // Light orange fill
+                                borderColor: 'rgba(255, 159, 64, 1)', // Darker orange border
+                                borderWidth: 1,
+                            }]
+                        },
+                        options: {
+                            responsive: true, // Chart resizes based on screen size
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true, // Ensure the y-axis starts at zero
+                                    type: 'logarithmic', // Use logarithmic scale for better visibility of smaller values
+                                    min: 0.01, // Avoid setting zero as minimum since log(0) is undefined
+                                    ticks: {
+                                        // Logarithmic scale adjusts tick spacing automatically
+                                        autoSkip: true, // Skip ticks to avoid overcrowding
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: { display: true }, // Show legend
+                                tooltip: { enabled: true }, // Show tooltips
+                            }
+                        }
+                    });
                 });
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            document.getElementById('trending-table-body').innerHTML = `
+            document.getElementById('trending-table-body').innerHTML = ` 
                 <tr>
                     <td colspan="3">Failed to load Trending cryptos. Please try again later.</td>
                 </tr>
             `;
+            document.getElementById('trendingChart').innerHTML = 'Error loading chart data'; // Show error in chart area
         });
 }
 
+
+let gainersChart = null;
 // Function to fetch and display Top Gainers
 function fetchGainers() {
     const url = `${baseUrl}/top/totalvolfull?limit=50&tsym=USD&api_key=${apiKey}`;
@@ -213,7 +281,43 @@ function fetchGainers() {
                     </tr>
                 `;
             }).join('');
+
+            // Generate chart data
+            const labels = sorted.slice(0, 10).map(crypto => crypto.CoinInfo.Name);
+            const dataPoints = sorted.slice(0, 10).map(crypto => crypto.RAW.USD.CHANGEPCT24HOUR);
+
+            const ctx = document.getElementById('gainersChart').getContext('2d');
+            // Check if a chart already exists on the canvas and destroy it
+
+            // Check if a chart already exists on the canvas and destroy it
+            if (gainersChart !== null) {
+                gainersChart.destroy();
+            }
+
+            // Create the chart
+            gainersChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '24h % Change',
+                        data: dataPoints,
+                        backgroundColor: 'rgba(75, 192, 75, 0.2)', // Green background color
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true },
+                        tooltip: { enabled: true },
+                    }
+                }
+            });
         })
+
         .catch(error => {
             console.error('Error fetching Gainers:', error);
             document.getElementById('gainers-table-body').innerHTML = `
@@ -221,9 +325,12 @@ function fetchGainers() {
                     <td colspan="5">Failed to load Gainers. Please try again later.</td>
                 </tr>
             `;
+            document.getElementById('gainersChart').innerHTML = 'Error loading chart data. Please Reload.'; // Show error in chart area
         });
 }
 
+
+let losersChart = null;
 // Function to fetch and display Top Losers
 function fetchLosers() {
     const url = `${baseUrl}/top/totalvolfull?limit=50&tsym=USD&api_key=${apiKey}`;
@@ -269,7 +376,42 @@ function fetchLosers() {
                     </tr>
                 `;
             }).join('');
+
+            // Generate chart data
+            const labels = sorted.slice(0, 10).map(crypto => crypto.CoinInfo.Name);
+            const dataPoints = sorted.slice(0, 10).map(crypto => crypto.RAW.USD.CHANGEPCT24HOUR);
+
+            // Create the chart
+            const ctx = document.getElementById('losersChart').getContext('2d');
+
+            // Check if a chart already exists on the canvas and destroy it
+            if (losersChart !== null) {
+                losersChart.destroy();
+            }
+
+            losersChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '24h % Change',
+                        data: dataPoints,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red for losers
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true },
+                        tooltip: { enabled: true },
+                    }
+                }
+            });
         })
+        
         .catch(error => {
             console.error('Error fetching Losers:', error);
             document.getElementById('losers-table-body').innerHTML = `
@@ -277,8 +419,10 @@ function fetchLosers() {
                     <td colspan="5">Failed to load Losers. Please try again later.</td>
                 </tr>
             `;
+            document.getElementById('losersChart').innerHTML = 'Error loading chart data. Please Reload.'; // Show error in chart area
         });
 }
+
 
 // Automatically close hamburger menu on tab click
 function closeHamburgerMenu() {
@@ -315,9 +459,13 @@ tabs.losers.addEventListener('click', event => {
     debouncedFetchLosers();
 });
 
+
+
 // Initial load
-switchSection('top');
-debouncedFetchTop();
+document.addEventListener('DOMContentLoaded', () => {
+    switchSection('top');
+    debouncedFetchTop();
+});
 
 function fetchChartData() {
     const url = `${baseUrl}/top/mktcapfull?limit=10&tsym=USD&api_key=${apiKey}`;
@@ -325,16 +473,33 @@ function fetchChartData() {
         .then(response => response.json())
         .then(data => {
             const labels = data.Data.map(crypto => crypto.CoinInfo.Name);
-            const marketCaps = data.Data.map(crypto => crypto.RAW.USD.MKTCAP);
+            let marketCaps = data.Data.map(crypto => crypto.RAW.USD.MKTCAP);
 
+            // Function to format market cap based on scale
+            const formatMarketCap = (cap) => {
+                if (cap >= 1e12) { // Trillion
+                    return (cap / 1e12).toFixed(1) + 'T';
+                } else if (cap >= 1e9) { // Billion
+                    return (cap / 1e9).toFixed(1) + 'B';
+                } else if (cap >= 1e6) { // Million
+                    return (cap / 1e6).toFixed(1) + 'M';
+                } else {
+                    return cap; // For values below million, display the full number
+                }
+            };
+
+            // Format market cap values for the chart labels, keeping original numbers for data
+            const formattedMarketCaps = marketCaps.map(cap => formatMarketCap(cap));
+
+            // Create the chart
             const ctx = document.getElementById('coinChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: labels, // Labels remain as crypto names
                     datasets: [{
                         label: 'Market Cap (USD)',
-                        data: marketCaps,
+                        data: marketCaps, // Using original marketCap values for chart's y-axis calculation
                         backgroundColor: 'rgba(75, 192, 192, 0.2)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -345,13 +510,25 @@ function fetchChartData() {
                     maintainAspectRatio: false,
                     scales: {
                         y: {
-                            beginAtZero: true
+                            beginAtZero: true,
+                            ticks: {
+                                // Optional: Display the full market cap value on the y-axis
+                                callback: function(value) {
+                                    if (window.innerWidth > 817) {
+                                        return value.toLocaleString(); // Full value for desktop
+                                    } else {
+                                        return formatMarketCap(value); // Abbreviated format for mobile
+                                    }
+                                }
+                            },
                         }
                     }
                 }
             });
         });
 }
+
+
 fetchChartData();
 
 document.addEventListener('DOMContentLoaded', function() {
