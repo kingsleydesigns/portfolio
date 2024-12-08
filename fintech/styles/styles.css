@@ -1,0 +1,244 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+header {
+    background: #1b5e20;
+    color: #fff;
+    padding: 2rem 0;
+    border-bottom: 0.2px solid white;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav a{
+    display: none;
+}
+
+#menu {
+	font-size: 1.5rem;
+	border: 0;
+	background: none;
+	color: white;
+	position: absolute;
+	top: 2rem;
+	right: 1rem;
+}
+
+#menu::before {
+	content: "☰";
+}
+
+#menu.open::before {
+	content: "❎";
+}
+
+.open a {
+	display: block;
+}
+
+.hero {
+    display: flex; /* Enables Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Horizontally center content */
+    justify-content: center; /* Vertically center content */
+    width: 100%;
+    height: 500px; /* Scales the height based on viewport */
+    overflow: hidden; /* Prevent unwanted scrollbars */
+    position: relative;
+    text-align: center; /* Center-align text inside the hero */
+    
+}
+
+/* Background Image */
+.hero .hero-image {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    object-fit: cover; /* Ensures the image covers the container proportionally */
+    position: absolute; /* Allows text and other elements to sit above it */
+    z-index: 1; /* Sends the image to the background */
+}
+
+.hero .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Adjusts to container size */
+    z-index: 1; /* Slightly above the main hero image */
+    filter: blur(10px) opacity(0.); /* Adds blur and transparency */
+}
+
+/* Hero Text */
+.hero .hero-text {
+    background: rgba(0, 0, 0, 0.6); /* Optional background for contrast */
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 3;
+    opacity: 0;
+    animation: fadeInUp 1.5s ease-in-out 1s forwards;
+}
+
+/* Hero Text Styling */
+.hero .hero-text h2 {
+    font-size: 1.5rem;
+    color: #e8f5e9;
+    margin-bottom: 0.5rem;
+}
+
+.hero .hero-text p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #e8f5e9;
+}
+
+.hero .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #388e3c;
+    color: gold;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+
+
+/* Animations */
+@keyframes fadeInZoom {
+    from {
+        opacity: 0;
+        transform: scale(1.2); /* Start slightly zoomed in */
+    }
+    to {
+        opacity: 1;
+        transform: scale(1); /* End at normal size */
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Settle in place */
+    }   
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Settle in place */
+    }
+}
+
+/* General Section Styles */
+.why-choose-us {
+    margin-top: -2rem; /* Slight overlap with hero section */
+    background: #1e3f1f; 
+    color: #fff;
+    z-index: 4;
+    border-radius: 20px 20px 0 0; /* Rounded edges at the top */
+    padding: 4rem 4rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeInSlide 4s ease-in-out; /* Section entry animation */
+}
+
+/* Content Alignment */
+.why-choose-us .content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.why-choose-us h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #e8f5e9; /* Gold for emphasis */
+}
+
+.why-choose-us p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature {
+    background: #fff;
+    color: #388e3c;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeInUp 4s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #388e3c;
+}
+
+.feature p {
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+/* Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
