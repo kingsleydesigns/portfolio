@@ -193,4 +193,38 @@ a:hover {
   #contact a {
     color: #0077cc;
   }
-  
+
+/* Define the animation */
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px); /* Start slightly lower */
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0); /* Settle in place */
+  }   
+}
+
+/* Initial state of elements */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+}
+
+/* Add animation class when element is in view */
+.section.visible {
+  animation: fadeInUp 3s ease-out forwards;
+}
+
+#tools {
+  opacity: 0;
+  transform: translateY(50px); /* Start below */
+  transition: all 0.5s ease-out;
+}
+
+#tools.visible {
+  opacity: 1;
+  animation: fadeInUp 2s ease-out forwards;
+}
