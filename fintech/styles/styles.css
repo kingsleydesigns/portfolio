@@ -21,8 +21,19 @@ nav ul {
     list-style: none;
 }
 
-nav a{
-    display: none;
+.navigation a {
+	display: none;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+.navigation a:hover { 
+	background-color: black;
+	color: white;
+	font-weight: 700;
 }
 
 #menu {
@@ -71,17 +82,18 @@ nav a{
     z-index: 1; /* Sends the image to the background */
 }
 
+/*
 .hero .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Adjusts to container size */
-    z-index: 1; /* Slightly above the main hero image */
-    filter: blur(10px) opacity(0.); /* Adds blur and transparency */
-}
-
+    object-fit: cover; 
+    z-index: 1; 
+    filter: blur(10px) opacity(0.); 
+}    */
+   
 /* Hero Text */
 .hero .hero-text {
     background: rgba(0, 0, 0, 0.6); /* Optional background for contrast */
@@ -241,4 +253,54 @@ nav a{
         transform: translateY(0);
     }
 }
+
+/* Image and text section */
+
+.alternating-content {
+    display: grid;
+    gap: 2rem; /* Add space between each content pair */
+    margin: 2rem;
+}
+  
+.content {
+    display: grid;
+    grid-template-columns: 1fr; /* Two equal columns */
+    align-items: center;
+    gap: 1rem;
+}
+
+.reverse {
+    grid-template-columns: 1fr; /* Same layout */
+    direction: ltr; /* Reverse column order */
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center text vertically */
+    order: -1; 
+}
+
+.text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.image {
+    width: 80%;
+    padding-top: 3rem;
+    border-radius: 10px;
+    order: 2;
+    display: inline;
+    margin: 0 auto;
+}
+
+.image-div {
+    display: flex;
+    background-color:#eeeded;
+    border-radius: 10px;
+    
+    
+}
+
 

@@ -66,4 +66,41 @@
         background: #2c6e2f;
         transform: scale(1.05);
     }
+
+    .alternating-content {
+        gap: 5rem; /* Add space between each content pair */
+        
+    }
+
+    .content{
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        direction: rtl;
+    }
+    
+    .content .text {
+        direction: ltr;
+        margin-right: 4rem;
+    }
+
+    .text {
+        text-align: left;
+        padding: 3rem; /* Add spacing within the text box */
+        order: 1;
+    }
+
+    .text h2{
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .reverse {
+        grid-template-columns: 1fr 1fr; /* Same layout */
+        direction: ltr; /* Reverse column order */
+       
+    }
+
+    .reverse .text {
+        margin-left: 4rem;
+    }
 }
