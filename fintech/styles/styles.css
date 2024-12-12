@@ -13,7 +13,7 @@ body {
 header {
     background: #1b5e20;
     color: #fff;
-    padding: 2rem 0;
+    padding: 1rem 0;
     border-bottom: 0.2px solid white;
 }
 
@@ -42,7 +42,7 @@ nav ul {
 	background: none;
 	color: white;
 	position: absolute;
-	top: 2rem;
+	top: 1rem;
 	right: 1rem;
 }
 
@@ -282,7 +282,7 @@ nav ul {
 }
 
 .text h2 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
 }
 

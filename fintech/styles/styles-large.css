@@ -16,15 +16,20 @@
         gap: 5rem; /* You can use a smaller gap for control */
     }
 
-    header nav a {
+    .navigation a{
         display: flex;
         color: #fff;
         text-decoration: none;
         transition: color 0.3s ease;
     }
 
-    header nav a:hover {
-        color: #ffd700;
+    .navigation a:hover {
+        background: none;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 0.2em;
+        transform: scale(1.05);
+        transition: 0.3s ease-in-out;
     }
 
     #menu {
