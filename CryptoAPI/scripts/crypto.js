@@ -469,11 +469,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function fetchChartData() {
     const url = `${baseUrl}/top/mktcapfull?limit=10&tsym=USD&api_key=${apiKey}`;
+    const errorElement = document.getElementById('chart-error');
+    const chartCanvas = document.getElementById('coinChart');
+
+    // Clear previous error
+    errorElement.style.display = 'none';
+    chartCanvas.style.display = 'block';
+
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
-            const labels = data.Data.map(crypto => crypto.CoinInfo.Name);
-            let marketCaps = data.Data.map(crypto => crypto.RAW.USD.MKTCAP);
+            if (!data.Data || data.Data.length === 0) {
+                throw new Error('No data available from the API');
+            }
+
+            // Filter out entries without valid RAW.USD.MKTCAP
+            const validData = data.Data.filter(crypto => 
+                crypto.RAW && crypto.RAW.USD && crypto.RAW.USD.MKTCAP
+            );
+
+            if (validData.length === 0) {
+                throw new Error('No valid market cap data available.');
+            }
+
+            const labels = validData.map(crypto => crypto.CoinInfo.Name);
+            let marketCaps = validData.map(crypto => crypto.RAW.USD.MKTCAP);
 
             // Function to format market cap based on scale
             const formatMarketCap = (cap) => {
@@ -488,11 +513,14 @@ function fetchChartData() {
                 }
             };
 
+            console.log('Labels:', labels);
+            console.log('Market Caps:', marketCaps);
+
             // Format market cap values for the chart labels, keeping original numbers for data
             const formattedMarketCaps = marketCaps.map(cap => formatMarketCap(cap));
 
             // Create the chart
-            const ctx = document.getElementById('coinChart').getContext('2d');
+            const ctx = chartCanvas.getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
@@ -525,8 +553,17 @@ function fetchChartData() {
                     }
                 }
             });
+        })
+        .catch(error => {
+            console.error('Error fetching chart data:', error);
+
+            // Show error message
+            chartCanvas.style.display = 'none'; // Hide the canvas
+            errorElement.style.display = 'block'; // Show the error message
+            errorElement.textContent = 'Failed to load chart data. Please try again later.';
         });
 }
+
 
 
 fetchChartData();
