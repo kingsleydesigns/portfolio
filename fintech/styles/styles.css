@@ -11,7 +11,8 @@ body {
 }
 
 header {
-    background: #1b5e20;
+    /* background:#143e16;  */
+    background: #19431b;
     color: #fff;
     padding: 1rem 0;
     border-bottom: 0.2px solid white;
@@ -34,6 +35,19 @@ nav ul {
 	background-color: black;
 	color: white;
 	font-weight: 700;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between icon and text */
+    color: #fff; /* Adjust to match your design */
+    font-size: 1rem;
+}
+
+.header-logo i {
+    font-size: 2rem; /* Make the icon larger */
+    color: rgb(235, 201, 11); /* Set the icon color */
 }
 
 #menu {
@@ -175,7 +189,6 @@ nav ul {
     border-radius: 20px 20px 0 0; /* Rounded edges at the top */
     padding: 4rem 4rem;
     box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
-    animation: fadeInSlide 4s ease-in-out; /* Section entry animation */
 }
 
 /* Content Alignment */
@@ -259,7 +272,7 @@ nav ul {
 .alternating-content {
     display: grid;
     gap: 2rem; /* Add space between each content pair */
-    margin: 2rem;
+    margin: 3rem 2rem;
 }
   
 .content {
@@ -300,8 +313,190 @@ nav ul {
     display: flex;
     background-color:#eeeded;
     border-radius: 10px;
+}
+
+.integrations {
+    display: grid;
+    gap: 1rem; /* Add space between each content pair */
+    background-color: #eeeded;
+    padding: 4rem 2rem;
+    z-index: 7;
+}
+
+.dollar-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px; /* Adjust for size */
+    height: 70px; /* Adjust for size */
+    background-color: #dbe7e7; /* Replace with your desired background color  #cedfdf*/
+    border-radius: 50%; /* Circular shape */
+    margin-bottom: 1rem;
+}
+
+.dollar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px; /* Adjust for size */
+    height: 50px; /* Adjust for size */
+    background-color: #BBD3CF; /* Replace with your desired background color */
+    border-radius: 50%; /* Circular shape */
+}
+
+.dollar i {
+    color: #277768; /* Icon color */
+    font-size: 24px; /* Adjust icon size */
+  }
+
+.wallet{
+    margin-bottom: 3rem;
+}
+
+.wallet h2 {
+    font-size: 2rem;
+}
+
+.wallet .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #0C231F;
+    color: #E1FFA0;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+    margin-top: 1rem;
+}
+
+.platform{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Fixed 2 columns */
+    grid-template-rows: repeat(2, auto); /* Fixed 2 rows */
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.platform img{
+    width: 50%;
+}
+
+/* Animation for the site */
+/* Define the animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Start slightly lower */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Settle in place */
+    }   
+  }
+  
+.footer {
+    position: absolute;
+    left: 0;
+    width: 100%; /* Make it full width */
+    background-color: #19431b; /* Same as header background */
+    color: #fff;
+    z-index: 8;
+    margin-top: -1rem;
+    border-radius: 20px 20px 0 0; /* Rounded edges at the top */
+    padding: 2rem 1rem; /* More compact padding for mobile */
+    font-size: 0.9rem; /* Slightly smaller text for mobile */
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between icon and text */
+    color: #fff; /* Adjust to match your design */
+    font-size: 1.6rem;
+}
+
+.footer-logo i {
+    font-size: 2rem; /* Make the icon larger */
+    color: rgb(235, 201, 11); /* Set the icon color */
+}
+
+.footer-logo h2 {
+    font-size: 1.6rem;
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem; /* Add space above the links */
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #e8f5e9; /* Light green hover color */
+    font-size: large;
+}
+
+.footer-social ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem; /* Add space above the social icons */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
     
-    
+}
+
+.footer-social li {
+    display: inline-block;
+}
+
+.footer-social a {
+    font-size: 1.5rem;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #e8f5e9; /* Light green hover color */
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: #b0b0b0;
+}
+
+.footer-bottom p {
+    margin: 0;
+    text-align: center;
+}
+
+
+/* Initial state of elements */
+.animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+/* Add animation class when element is in view */
+.animate.visible {
+    animation: fadeInUp 3s ease-out forwards;
 }
 
 

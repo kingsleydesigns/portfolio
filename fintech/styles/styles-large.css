@@ -25,10 +25,7 @@
 
     .navigation a:hover {
         background: none;
-        text-decoration: underline;
-        text-decoration-color: black;
-        text-decoration-thickness: 0.2em;
-        transform: scale(1.05);
+        transform: scale(1.45);
         transition: 0.3s ease-in-out;
     }
 
@@ -107,5 +104,42 @@
 
     .reverse .text {
         margin-left: 4rem;
+    }
+
+    .integrations{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 8rem 3rem;
+    }
+
+    .wallet h2 {
+        font-size: 3.5rem;
+        line-height: 1.1;
+    }
+
+    .footer-content {
+        max-width: 1400px; /* Increase the max width for larger screens */
+    }
+
+    .footer-logo h2 {
+        font-size: 2rem; /* Larger logo text for desktop */
+    }
+
+    .footer-links ul {
+        gap: 2.5rem; /* More space between links */
+    }
+
+    .footer-social ul {
+        justify-content: left;
+    }
+    .footer-social a {
+        font-size: 1.75rem; /* Larger social media icons */
+    }
+
+    .footer-bottom {
+        margin-top: -2.2rem;
+    }
+
+    .footer-bottom p {
+        text-align: right;
     }
 }
