@@ -573,3 +573,70 @@ nav ul {
   .accordion-item.active .accordion-icon {
     transform: rotate(90deg);
   }
+
+
+
+/* About section */
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.about-header {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.about-paragraph {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 500px;
+}
+
+.contact-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0C231F;
+    color: #E1FFA0;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.values-vision-team {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.values-vision-team ul{
+    margin-left: 1rem;
+}
+
+.values-vision-team h3 {
+    font-size: 1.5rem;
+}
+
+.values-vision-team div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
