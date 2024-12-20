@@ -142,4 +142,25 @@
     .footer-bottom p {
         text-align: right;
     }
+
+
+    /* FAQ Section */
+
+    .faq-h1 {
+        font-size: 2.5rem;
+        margin: 0.5rem;
+    }
+    .faq-h1, .faq-p {
+        text-align: center;
+        margin: 0.5rem;
+    }
+
+    .accordion {
+        max-width: 90%;
+        margin: 40px auto;
+      }
+
+      .accordion-header h3 {
+        font-size: 18px;
+      }
 }

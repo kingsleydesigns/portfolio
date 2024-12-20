@@ -1,5 +1,6 @@
 const hamButton = document.querySelector('#menu');
 const navigation = document.querySelector('.navigation');
+const accordionHeaders = document.querySelectorAll('.accordion-header');
 
 hamButton.addEventListener('click', () => {
 	navigation.classList.toggle('open');
@@ -27,3 +28,14 @@ const observer = new IntersectionObserver(
 sections.forEach(section => {
     observer.observe(section);
 });
+
+accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
