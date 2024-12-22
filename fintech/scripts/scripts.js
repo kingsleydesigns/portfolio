@@ -39,3 +39,11 @@ accordionHeaders.forEach(header => {
       }
     });
   });
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent page refresh
+    // Hide the form
+    this.style.display = 'none';
+    // Show the thank-you message
+    document.getElementById('thankYouMessage').style.display = 'block';
+});

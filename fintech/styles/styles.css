@@ -396,7 +396,7 @@ nav ul {
   }
   
 .footer {
-    position: absolute;
+    position: relative;
     left: 0;
     width: 100%; /* Make it full width */
     background-color: #19431b; /* Same as header background */
@@ -640,3 +640,62 @@ nav ul {
     flex-direction: column;
     gap: 10px;
 }
+
+
+/* Contact page */
+
+ .contact-container {
+    flex: 1;
+    justify-content: center;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .contact-form input, 
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .contact-form button:hover {
+    background-color: #218838;
+  }
+
+  .thank-you-message {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    color: #28a745;
+    padding-top: 10rem;
+    height: 400px;
+  }
