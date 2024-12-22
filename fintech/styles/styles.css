@@ -394,7 +394,7 @@ nav ul {
         transform: translateY(0); /* Settle in place */
     }   
   }
-  
+
 .footer {
     position: relative;
     left: 0;
@@ -679,7 +679,7 @@ nav ul {
   .contact-form button {
     width: 100%;
     padding: 10px;
-    background-color: #28a745;
+    background-color: #388e3c;
     color: #fff;
     border: none;
     border-radius: 5px;
