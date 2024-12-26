@@ -144,6 +144,10 @@ nav ul {
     transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.btn:hover {
+    background: rgb(27, 63, 94);
+    transform: scale(1.05);
+}
 
 
 /* Animations */
