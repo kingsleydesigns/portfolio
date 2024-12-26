@@ -563,7 +563,7 @@ nav ul {
   }
   
   button:hover {
-    background-color: #1b4d34;
+    background-color: rgb(27, 63, 94);
   }
 
 /* About section */
@@ -677,9 +677,9 @@ nav ul {
     cursor: pointer;
   }
 
-  .contact-form button:hover {
+  /* .contact-form button:hover {
     background-color: #218838;
-  }
+  } */
 
   .thank-you-message {
     display: none;
