@@ -1,0 +1,219 @@
+@media (min-width: 768px) {
+    header{
+        padding: 0.4rem;
+    }
+    header nav {
+        display: flex;
+        justify-content: space-between; /* Spreads items evenly with space around them */
+        align-items: center;
+        max-width: 1200px;
+        padding: 0 1rem;
+    }
+
+    header nav ul {
+        list-style: none;
+        display: flex;
+        gap: 5rem; /* You can use a smaller gap for control */
+    }
+
+    .navigation a{
+        display: flex;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .navigation a:hover {
+        background: none;
+        transform: scale(1.45);
+        transition: 0.3s ease-in-out;
+    }
+
+    #menu {
+		display: none; 
+	}
+
+    .hero img.hero-image {
+        width: 100%;
+        height: 100%;
+    }
+
+    /*.hero img.overlay-image {
+        width: 90%;
+        top: 30%;
+        left: 5%;
+    } */
+
+    .hero .hero-text {
+        top: 30%;
+        left: 27%;
+        transform: translate(-30%, -30%);
+        padding: 2rem 3rem;
+    }
+
+    .hero .hero-text h2 {
+        font-size: 3rem;
+    }
+
+    .hero .hero-text p {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .btn:hover {
+        background: rgb(27, 63, 94);
+        transform: scale(1.05);
+    }
+
+    .alternating-content {
+        gap: 5rem; /* Add space between each content pair */
+        
+    }
+
+    .content{
+        grid-template-columns: 1fr 1fr; /* Two equal columns */
+        direction: rtl;
+    }
+    
+    .content .text {
+        direction: ltr;
+        margin-right: 4rem;
+    }
+
+    .text {
+        text-align: left;
+        padding: 3rem; /* Add spacing within the text box */
+        order: 1;
+    }
+
+    .text h2{
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-bottom: 1.5rem;
+    }
+
+    .reverse {
+        grid-template-columns: 1fr 1fr; /* Same layout */
+        direction: ltr; /* Reverse column order */
+       
+    }
+
+    .reverse .text {
+        margin-left: 4rem;
+    }
+
+    .integrations{
+        grid-template-columns: repeat(2, 1fr);
+        padding: 8rem 3rem;
+    }
+
+    .wallet h2 {
+        font-size: 3.5rem;
+        line-height: 1.1;
+    }
+
+    .footer-content {
+        max-width: 1400px; /* Increase the max width for larger screens */
+    }
+
+    .footer-logo h2 {
+        font-size: 2rem; /* Larger logo text for desktop */
+    }
+
+    .footer-links a {
+        font-size: 1rem;
+    }
+    .footer-links ul {
+        gap: 1.5rem; /* More space between links */
+    }
+
+    .footer-social ul {
+        justify-content: left;
+    }
+    .footer-social a {
+        font-size: 1.75rem; /* Larger social media icons */
+    }
+
+    .footer-bottom {
+        margin-top: -2.2rem;
+    }
+
+    .footer-bottom p {
+        text-align: right;
+    }
+
+
+    /* FAQ Section */
+
+    .faq-h1 {
+        font-size: 2.5rem;
+        margin: 0.5rem;
+    }
+    .faq-h1, .faq-p {
+        text-align: center;
+        margin: 0.5rem;
+    }
+
+    .accordion {
+        max-width: 90%;
+        margin: 40px auto;
+      }
+
+      .accordion-header h3 {
+        font-size: 18px;
+      }
+
+      /* Login/Signup page */
+
+      .auth-form {
+        width: 60%;
+        margin: 5rem auto;
+      }
+    /* About section */
+
+    .about-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 2rem auto;
+        
+        width: 80%;
+        padding: 0;
+      }
+
+      .about-header {
+        margin-bottom: 0;
+      }
+
+      .about-content {
+        padding: 10px;
+      }
+
+      .about-image {
+        max-width: 100%;
+        padding-right: 1.2rem;
+      }
+
+      .contact-button {
+        padding: 7px 20px;
+        margin-left: 2px;
+      }
+
+      .contact-button:hover {
+        background: #2c6e2f;
+        transform: scale(1.05);
+      }
+
+      .values-vision-team {
+        flex-direction: row;
+        justify-content: space-evenly;
+        text-align: left;
+        margin: 1.5rem;
+      }
+
+
+}
