@@ -40,42 +40,20 @@ accordionHeaders.forEach(header => {
     });
   });
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent page refresh
-    // Hide the form
-    this.style.display = 'none';
-    // Show the thank-you message
-    document.getElementById('thankYouMessage').style.display = 'block';
-});
-
-
+// Toggle between Sign Up and Login forms
+// Toggle between Sign Up and Login forms
 // Toggle between Sign Up and Login forms
 function toggleForm() {
-    const signupForm = document.getElementById("signup-form");
-    const loginForm = document.getElementById("login-form");
-  
-    if (signupForm.style.display === "none") {
-      signupForm.style.display = "block";
-      loginForm.style.display = "none";
-    } else {
-      signupForm.style.display = "none";
-      loginForm.style.display = "block";
-    }
+  const signupForm = document.getElementById("signup-form");
+  const loginForm = document.getElementById("login-form");
+
+  if (signupForm.style.display === "none") {
+    signupForm.style.display = "block";
+    loginForm.style.display = "none";
+  } else {
+    signupForm.style.display = "none";
+    loginForm.style.display = "block";
   }
-  
-  // Handle Signup
-  document.getElementById('signup').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Here, you can handle signup functionality (send data to backend, etc.)
-    alert('Signup successful!');
-    // Redirect or show further options after successful signup.
-  });
-  
-  // Handle Login
-  document.getElementById('login').addEventListener('submit', function(event) {
-    event.preventDefault();
-    // Here, you can handle login functionality (authenticate user)
-    alert('Login successful!');
-    // Redirect or show the dashboard after successful login.
-  });
-  
+}
+
+

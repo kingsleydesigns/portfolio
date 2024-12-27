@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/styles-large.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js" type="module"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -82,7 +84,78 @@
             <p>&copy; 2024 JobConnect. All rights reserved.</p>
         </div>
       </footer>
-      <script src="scripts/scripts.js"></script>
+
+          <!-- Include Firebase SDK using CDN links -->
+    <script type="module">
+      // Import Firebase modules
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
+
+      // Firebase Configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyAxu6E2MKhseDvorgCji5kbVCqCyrxAOGE",
+        authDomain: "jobconnect-project.firebaseapp.com",
+        projectId: "jobconnect-project",
+        storageBucket: "jobconnect-project.firebasestorage.app",
+        messagingSenderId: "121740588038",
+        appId: "1:121740588038:web:6d0b338f98d8d73933ff87",
+        measurementId: "G-CB02R8CMQB"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+
+      // Handle Signup
+      document.getElementById('signup').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('signup-email').value;
+        const password = document.getElementById('signup-password').value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert('Signup successful!');
+            console.log('User signed up:', userCredential.user);
+          })
+          .catch((error) => {
+            console.error('Error during signup:', error.message);
+            alert(error.message);
+          });
+      });
+
+      // Handle Login
+      document.getElementById('login').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            alert('Login successful!');
+            console.log('User logged in:', userCredential.user);
+            window.location.href = '/dashboard.html'; // Redirect to dashboard
+          })
+          .catch((error) => {
+            console.error('Error during login:', error.message);
+            alert(error.message);
+          });
+      });
+
+      // Check if the user is logged in
+      onAuthStateChanged(auth, user => {
+        if (!user) {
+          window.location.href = '/signup.html'; // Redirect to signup page if not logged in
+        }
+      });
+
+      // Logout functionality
+      document.getElementById('logout').addEventListener('click', async () => {
+        await signOut(auth);
+        console.log('Logged out');
+        window.location.href = '/signup.html'; // Redirect to login page
+      });
+    </script>
+    <script src="scripts/scripts.js">defer</script>
     </div>
 </body>
 </html>
