@@ -46,14 +46,86 @@ accordionHeaders.forEach(header => {
 function toggleForm() {
   const signupForm = document.getElementById("signup-form");
   const loginForm = document.getElementById("login-form");
-
-  if (signupForm.style.display === "none") {
-    signupForm.style.display = "block";
-    loginForm.style.display = "none";
+  const successPopup = document.getElementById('success-popup');
+  
+  // Hide both forms and show the appropriate one
+  if (signupForm.style.display === 'none') {
+    // Show the signup form
+    signupForm.style.display = 'block';
+    loginForm.style.display = 'none';
   } else {
-    signupForm.style.display = "none";
-    loginForm.style.display = "block";
+    // Show the login form
+    signupForm.style.display = 'none';
+    loginForm.style.display = 'block';
   }
+
+  // Hide the success popup when toggling the forms
+  successPopup.style.display = 'none';
+  
 }
 
+// This function hides the signup form and shows the login form
+function showLoginForm() {
+  const signupForm = document.getElementById('signup-form');
+  const loginForm = document.getElementById('login-form');
+  const successPopup = document.getElementById('success-popup');
 
+  // Hide the signup form and the success popup
+  signupForm.style.display = 'none';
+  successPopup.style.display = 'none';
+
+  // Show the login form
+  loginForm.style.display = 'block';
+  
+  // Clear the signup form fields
+  document.getElementById('signup-email').value = '';
+  document.getElementById('signup-password').value = '';
+}
+
+// Event listener for the "Go to Login" link
+document.getElementById('go-to-login').addEventListener('click', function(event) {
+  event.preventDefault(); // Prevent the default link behavior
+  showLoginForm(); // Switch to login form and clear signup details
+});
+
+
+// Attach it to the global scope
+window.toggleForm = toggleForm;
+
+import { signUp, logIn, logOut, monitorAuthState } from './firebase.js';
+
+// Handle Signup
+document.getElementById('signup').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    signUp(email, password);
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('success-popup').style.display = 'block';
+});
+
+// Handle Login
+document.getElementById('login').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    logIn(email, password);
+});
+
+// Handle Logout
+document.getElementById('logout').addEventListener('click', () => {
+    logOut();
+});
+
+// Monitor Auth State
+monitorAuthState((user) => {
+    if (user) {
+        console.log("Welcome back, user:", user.email);
+        // Redirect or show content based on user login
+        window.location.href = '/dashboard.html';
+    } else {
+        console.log("No active user session.");
+        // Optionally redirect to login
+        window.location.href = '/signup.html';
+    }
+});

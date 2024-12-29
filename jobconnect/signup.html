@@ -7,8 +7,8 @@
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/styles-large.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js" type="module"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js" type="module"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js" type="module"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js" type="module"></script> -->
 </head>
 <body>
     <div class="wrapper">
@@ -31,29 +31,41 @@
           <div id="signup-form" class="auth-form">
             <h2>Create an Account</h2>
             <form id="signup">
-              <label for="name">Name</label>
+              <label for="signup-name">Name</label>
               <input type="text" id="signup-name" placeholder="Full Name" required>
     
-              <label for="email">Email</label>
+              <label for="signup-email">Email</label>
               <input type="email" id="signup-email" placeholder="Email" required>
     
-              <label for="password">Password</label>
-              <input type="password" id="signup-password" placeholder="Password" required>
+              <label for="signup-password">Password</label>
+              <input type="password" id="signup-password" placeholder="Password" required minlength="6" title="Password must be at least 6 characters long">
               <button type="submit" class="btn">Sign Up</button>
             </form>
             <p>Already have an account? <a href="#" onclick="toggleForm()">Login here</a></p>
           </div>
     
+
+          <!-- Popup message (hidden by default) -->
+          <div id="success-popup" style="display: none;">
+            <p>You have successfully signed up!</p>
+            <a href="#" id="go-to-login">Go to Login</a>
+          </div>
+
+
           <!-- Login Form -->
           <div id="login-form" class="auth-form" style="display:none;">
             <h2>Login to Your Account</h2>
             <form id="login">
-              <label for="email">Email</label>
+              <label for="login-email">Email</label>
               <input type="email" id="login-email" placeholder="Email" required>
     
-              <label for="password">Password</label>
+              <label for="login-password">Password</label>
               <input type="password" id="login-password" placeholder="Password" required>
-              <button type="submit" class="btn">Login</button>
+              
+              <!-- Error message div -->
+              <div id="login-error" style="color: red; display: none;"></div>
+              
+              <button type="submit" class="btn">Login</button>              
             </form>
             <p>Don't have an account? <a href="#" onclick="toggleForm()">Sign Up here</a></p>
           </div>
@@ -85,77 +97,32 @@
         </div>
       </footer>
 
-          <!-- Include Firebase SDK using CDN links -->
-    <script type="module">
-      // Import Firebase modules
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
-      import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-auth.js";
-
-      // Firebase Configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyAxu6E2MKhseDvorgCji5kbVCqCyrxAOGE",
-        authDomain: "jobconnect-project.firebaseapp.com",
-        projectId: "jobconnect-project",
-        storageBucket: "jobconnect-project.firebasestorage.app",
-        messagingSenderId: "121740588038",
-        appId: "1:121740588038:web:6d0b338f98d8d73933ff87",
-        measurementId: "G-CB02R8CMQB"
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
-      // Handle Signup
-      document.getElementById('signup').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const email = document.getElementById('signup-email').value;
-        const password = document.getElementById('signup-password').value;
-
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            alert('Signup successful!');
-            console.log('User signed up:', userCredential.user);
-          })
-          .catch((error) => {
-            console.error('Error during signup:', error.message);
-            alert(error.message);
-          });
-      });
-
-      // Handle Login
-      document.getElementById('login').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-
-        signInWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            alert('Login successful!');
-            console.log('User logged in:', userCredential.user);
-            window.location.href = '/dashboard.html'; // Redirect to dashboard
-          })
-          .catch((error) => {
-            console.error('Error during login:', error.message);
-            alert(error.message);
-          });
-      });
-
-      // Check if the user is logged in
-      onAuthStateChanged(auth, user => {
-        if (!user) {
-          window.location.href = '/signup.html'; // Redirect to signup page if not logged in
-        }
-      });
-
-      // Logout functionality
-      document.getElementById('logout').addEventListener('click', async () => {
-        await signOut(auth);
-        console.log('Logged out');
-        window.location.href = '/signup.html'; // Redirect to login page
-      });
-    </script>
-    <script src="scripts/scripts.js">defer</script>
+      <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyAxu6E2MKhseDvorgCji5kbVCqCyrxAOGE",
+          authDomain: "jobconnect-project.firebaseapp.com",
+          projectId: "jobconnect-project",
+          storageBucket: "jobconnect-project.firebasestorage.app",
+          messagingSenderId: "121740588038",
+          appId: "1:121740588038:web:6d0b338f98d8d73933ff87",
+          measurementId: "G-CB02R8CMQB"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
+      
+    <script type="module" src="scripts/firebase.js"></script>
+    <script type="module" src="scripts/scripts.js">defer</script>
     </div>
 </body>
 </html>
