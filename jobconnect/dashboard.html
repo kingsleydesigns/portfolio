@@ -4,14 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link rel="stylesheet" href="styles/dashboard-large.css">
 </head>
 <body>
-    <h2>Dashboard</h2>
-  <p>Welcome to the Dashboard!</p>
-  <button id="logout">Logout</button>
-
-  
-  <script type="module" src="scripts/firebase.js"></script>
-  <script type="module" src="scripts/scripts.js">defer</script>
+    <body>
+        <div class="container">
+            <div class="sidebar">
+                <h2>JobConnect</h2>
+                <a href="#" onclick="showTab('dashboard')">Dashboard</a>
+                <a href="#" onclick="showTab('email-requests')">Email Requests</a>
+                <a href="#" onclick="showTab('billing-plan')">Billing Plan</a>
+                <a href="#" onclick="showTab('profile')">Profile</a>
+                <div class="logout">
+                    <a href="#" onclick="logout()">Logout</a>
+                </div>
+            </div>
+            <div class="content">
+                <div id="dashboard" class="tab-content">
+                    <h1>Welcome to Your Dashboard</h1>
+                    <p>Here you can track your activity and manage your requests.</p>
+                </div>
+                <div id="email-requests" class="tab-content hidden">
+                    <h1>Email Requests</h1>
+                    <form>
+                        <div class="form-group">
+                            <label for="company-name">Company Name:</label>
+                            <input type="text" id="company-name" name="company-name" placeholder="Enter company name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-title">Job Title/Role:</label>
+                            <input type="text" id="job-title" name="job-title" placeholder="Enter job title or role">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" placeholder="Describe your request"></textarea>
+                        </div>
+                        <button type="submit">Submit Request</button>
+                    </form>
+                    <h2>Previous Requests</h2>
+                    <ul>
+                        <li>Request for xyz@example.com - <strong>Status: Pending</strong></li>
+                        <li>Request for abc@example.com - <strong>Status: Confirmed</strong></li>
+                    </ul>
+                </div>
+                <div id="billing-plan" class="tab-content hidden">
+                    <h1>Billing Plans</h1>
+                    <p>Select a plan that works best for you.</p>
+                    <ul>
+                        <li>Basic Plan - $20/month</li>
+                        <li>Pro Plan - $50/month</li>
+                        <li>Enterprise Plan - Contact us for pricing</li>
+                    </ul>
+                </div>
+                <div id="profile" class="tab-content hidden">
+                    <h1>Your Profile</h1>
+                    <p>Name: John Doe</p>
+                    <p>Email: johndoe@example.com</p>
+                    <button onclick="editProfile()">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+    
+  <script src="scripts/dashboard.js">defer</script>
 </body>
 </html>

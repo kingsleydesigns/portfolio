@@ -142,6 +142,7 @@ export function logOut() {
         .then(() => {
             console.log("User logged out");
             alert("Logged out successfully!");
+            window.location.href = 'signup.html';
         })
         .catch((error) => {
             console.error("Error during logout:", error.message);

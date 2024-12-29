@@ -530,6 +530,7 @@ nav ul {
 .signup-page {
     flex: 1;
 }
+
 .auth-form {
     text-align: center;
     margin: 3rem auto;
@@ -562,15 +563,39 @@ nav ul {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
+}
 
 #login-form{
     margin-top: 4.5rem;
-  }
+}
 
-  button:hover {
+#success-popup{
+    width: 80%;
+    height: 400px;
+    text-align: center;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#success-popup h2 {
+    background-color: rgb(40, 123, 190);  
+    color: white; 
+}
+
+#success-popup p {
+    margin-top: 6rem;
+}
+
+#login-error {
+    color: red;
+    display: none;
+}
+button:hover {
     background-color: rgb(27, 63, 94);
-  }
+}
 
 /* About section */
 
