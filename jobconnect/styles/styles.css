@@ -44,9 +44,8 @@ nav ul {
     font-size: 1rem;
 }
 
-.header-logo i {
-    font-size: 2rem; /* Make the icon larger */
-    color: black; /* Set the icon color */
+.logo-image {
+    width: 60px;
 }
 
 #menu {
@@ -55,7 +54,7 @@ nav ul {
 	background: none;
 	color: white;
 	position: absolute;
-	top: 1rem;
+	top: 1.8rem;
 	right: 1rem;
 }
 
@@ -356,9 +355,8 @@ nav ul {
     font-size: 1.6rem;
 }
 
-.footer-logo i {
-    font-size: 2rem; /* Make the icon larger */
-    color: black; /* Set the icon color */
+.footer-logo img {
+    width: 60px;
 }
 
 .footer-logo h2 {

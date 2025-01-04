@@ -92,8 +92,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase App
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
 
 console.log("Firebase initialized successfully:", app);
 
@@ -118,7 +118,7 @@ export function logIn(email, password) {
         .then((userCredential) => {
             console.log("User logged in:", userCredential.user);
             alert("Login successful!");
-            window.location.href = 'dashboard.html'; // Redirect to dashboard
+            window.location.href = "dashboard.html";
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -142,7 +142,7 @@ export function logOut() {
         .then(() => {
             console.log("User logged out");
             alert("Logged out successfully!");
-            window.location.href = 'signup.html';
+            window.location.href = "index.html";
         })
         .catch((error) => {
             console.error("Error during logout:", error.message);
@@ -151,14 +151,19 @@ export function logOut() {
 }
 
 // Function: Monitor User Authentication State
-export function monitorAuthState(callback) {
+export function monitorAuthState(onAuthenticated, onUnauthenticated) {
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            console.log("User is logged in:", user);
-            callback(user);
+            console.log("User is logged in:",);
+            if (onAuthenticated) {
+                onAuthenticated(user);
+            }
         } else {
-            console.log("No user is logged in");
-            callback(null);
+            console.log("No user is logged in.");
+            if (onUnauthenticated) {
+                onUnauthenticated();
+            }
         }
     });
 }
+

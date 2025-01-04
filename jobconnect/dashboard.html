@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Directreach - Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/dashboard-large.css">
+    <link rel="icon" href="images/favicon1.png"  type="image/png">
 </head>
 <body>
     <body>
         <div class="container">
             <div class="sidebar">
-                <h2>JobConnect</h2>
+                <div class="logo">
+                    <img src="images/directreach-logo1.png" alt="logo" class="logo-image">
+                    <h2>DirectReach</h2>
+                </div>
                 <a href="#" onclick="showTab('dashboard')">Dashboard</a>
                 <a href="#" onclick="showTab('email-requests')">Email Requests</a>
                 <a href="#" onclick="showTab('billing-plan')">Billing Plan</a>
@@ -66,6 +70,7 @@
             </div>
         </div>
     
-  <script src="scripts/dashboard.js">defer</script>
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/dashboard.js">defer</script>
 </body>
 </html>

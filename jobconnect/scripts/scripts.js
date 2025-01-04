@@ -112,20 +112,19 @@ document.getElementById('login').addEventListener('submit', (event) => {
     logIn(email, password);
 });
 
-// Handle Logout
-document.getElementById('logout').addEventListener('click', () => {
-    logOut();
-});
+// // Handle Logout
+// document.getElementById('logout').addEventListener('click', () => {
+//     logOut();
+// });
 
-// Monitor Auth State
-monitorAuthState((user) => {
-    if (user) {
-        console.log("Welcome back, user:", user.email);
-        // Redirect or show content based on user login
-        window.location.href = '/dashboard.html';
-    } else {
-        console.log("No active user session.");
-        // Optionally redirect to login
-        window.location.href = '/signup.html';
-    }
-});
+
+// Redirect logged-in users away from signup
+monitorAuthState(
+  (user) => {
+      console.log("User is logged in. Redirecting to dashboard...");
+      window.location.href = "dashboard.html"; // Redirect to dashboard
+  },
+  () => {
+      console.log("User is not logged in. Staying on signup page.");
+  }
+);

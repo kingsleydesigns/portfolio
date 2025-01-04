@@ -16,6 +16,18 @@ body {
     flex-direction: column;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem; /* Space between icon and text */
+    /* color: #fff; Adjust to match your design */
+    margin: 1rem;
+}
+.sidebar img {
+    width: 60px;
+}
+
 .sidebar h2 {
     text-align: center;
     padding: 20px 0;

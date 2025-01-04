@@ -1,3 +1,6 @@
+import {  signUp, logIn, logOut, monitorAuthState } from './firebase.js';
+
+
 function showTab(tabId) {
     const tabs = document.querySelectorAll('.tab-content');
     tabs.forEach(tab => tab.classList.add('hidden'));
@@ -7,12 +10,29 @@ function showTab(tabId) {
         selectedTab.classList.remove('hidden');
     }
 }
+window.showTab = showTab;
+
 
 function logout() {
-    alert('You have logged out successfully.');
-    window.location.href = 'index.html';
+    logOut();
 }
+window.logout = logout;
+
 
 function editProfile() {
     alert('Profile editing is not yet implemented.');
 }
+window.editProfile = editProfile;
+
+
+
+monitorAuthState(
+    (user) => {
+        console.log("User is authenticated:", user.email);
+        // Optionally, load personalized data here
+    },
+    () => {
+        console.log("User is not authenticated. Redirecting...");
+        window.location.href = "signup.html"; // Redirect if not logged in
+    }
+);
