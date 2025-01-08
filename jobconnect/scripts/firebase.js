@@ -1,84 +1,18 @@
-// // Firebase Configuration
-// const firebaseConfig = {
-//     apiKey: "AIzaSyAxu6E2MKhseDvorgCji5kbVCqCyrxAOGE",
-//     authDomain: "jobconnect-project.firebaseapp.com",
-//     projectId: "jobconnect-project",
-//     storageBucket: "jobconnect-project.firebasestorage.app",
-//     messagingSenderId: "121740588038",
-//     appId: "1:121740588038:web:6d0b338f98d8d73933ff87",
-//     measurementId: "G-CB02R8CMQB"
-//   };
-  
-//   // Initialize Firebase with the modular API
-// const app = firebase.initializeApp(firebaseConfig); // This initializes your app with Firebase v9+
-// // Use the specific Firebase features you need
-// const auth = firebase.auth();
-
-
-// // Log to verify Firebase initialization
-// console.log('Firebase App initialized:', app);
-// console.log('Auth instance initialized:', auth);
-
-
-//   // Handle Signup
-//   document.getElementById('signup').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     const email = document.getElementById('signup-email').value;
-//     const password = document.getElementById('signup-password').value;
-  
-//     auth.createUserWithEmailAndPassword(email, password)  // Correct usage of firebase.auth()
-//       .then((userCredential) => {
-//         alert('Signup successful! Welcome, ' + email + '. Please log in to continue.');
-//         console.log('User signed up:', userCredential.user);
-//       })
-//       .catch((error) => {
-//         console.error('Error during signup:', error.message);
-//         alert(error.message);
-//       });
-//   });
-  
-//   // Handle Login
-//   document.getElementById('login').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     const email = document.getElementById('login-email').value;
-//     const password = document.getElementById('login-password').value;
-  
-//     auth.signInWithEmailAndPassword(email, password)  // Correct usage of firebase.auth()
-//       .then((userCredential) => {
-//         alert('Login successful!');
-//         console.log('User logged in:', userCredential.user);
-//         window.location.href = '/dashboard.html'; // Redirect to dashboard
-//       })
-//       .catch((error) => {
-//         console.error('Error during login:', error.message);
-//         alert(error.message);
-//       });
-//   });
-  
-//   // Check if the user is logged in
-//   firebase.auth().onAuthStateChanged(user => {
-//     if (!user) {
-//       window.location.href = '/signup.html'; // Redirect to signup page if not logged in
-//     }
-//   });
-  
-//   // Logout functionality
-//   document.getElementById('logout').addEventListener('click', async () => {
-//     await firebase.auth().signOut();
-//     console.log('Logged out');
-//     window.location.href = '/signup.html'; // Redirect to login page
-//   });
-  
-
 // Import Firebase modules from the CDN
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { 
     getAuth, 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     onAuthStateChanged, 
-    signOut 
+    signOut,
+    updateProfile
 } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+import { getFirestore,
+        collection,
+        addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -92,16 +26,20 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase App
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+ const app = initializeApp(firebaseConfig);
+ export const auth = getAuth(app);
+ const db = getFirestore(app);
 
-console.log("Firebase initialized successfully:", app);
+//  console.log(db)
+
+// console.log("Firebase initialized successfully:", app);
 
 // Function: Sign Up a New User
-export function signUp(email, password) {
+export function signUp(email, password, fullName) {
     return createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log("User signed up:", userCredential.user);
+            updateProfile(auth.currentUser, { displayName: fullName });
+            console.log("User signed up:", userCredential.user, fullName);
             alert("Signup successful!");
         })
         .catch((error) => {

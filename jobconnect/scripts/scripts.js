@@ -99,10 +99,18 @@ document.getElementById('signup').addEventListener('submit', (event) => {
     event.preventDefault();
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
-    signUp(email, password);
+    const fullName = document.getElementById('signup-name').value;
+    signUp(email, password, fullName);
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('success-popup').style.display = 'block';
 });
+
+
+export function getFullName() {
+  const input = document.getElementById('signup-name');
+  return input ? input.value : null;
+}
+
 
 // Handle Login
 document.getElementById('login').addEventListener('submit', (event) => {
@@ -122,7 +130,7 @@ document.getElementById('login').addEventListener('submit', (event) => {
 monitorAuthState(
   (user) => {
       console.log("User is logged in. Redirecting to dashboard...");
-      window.location.href = "dashboard.html"; // Redirect to dashboard
+      // window.location.href = "dashboard.html"; // Redirect to dashboard
   },
   () => {
       console.log("User is not logged in. Staying on signup page.");

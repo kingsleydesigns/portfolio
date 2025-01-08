@@ -1,5 +1,4 @@
-import {  signUp, logIn, logOut, monitorAuthState } from './firebase.js';
-
+import { auth, signUp, logIn, logOut, monitorAuthState } from './firebase.js';
 
 function showTab(tabId) {
     const tabs = document.querySelectorAll('.tab-content');
@@ -29,6 +28,7 @@ window.editProfile = editProfile;
 monitorAuthState(
     (user) => {
         console.log("User is authenticated:", user.email);
+        personalizeWelcome();
         // Optionally, load personalized data here
     },
     () => {
@@ -36,3 +36,18 @@ monitorAuthState(
         window.location.href = "signup.html"; // Redirect if not logged in
     }
 );
+
+
+function personalizeWelcome() {
+    const user = auth.currentUser;
+    const fullName = user.displayName;
+    const welcomeMessage = document.getElementById('welcome-message');
+
+    if (fullName) {
+        welcomeMessage.textContent = `Welcome, ${fullName}!`;
+    } else {
+        welcomeMessage.textContent = `Welcome to your dashboard!`;
+    }
+}
+
+
