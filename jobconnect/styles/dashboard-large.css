@@ -1,0 +1,38 @@
+@media (min-width: 768px) {
+    /* body {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 250px 1fr; /* Sidebar takes 250px, rest is content */
+
+    .header {
+        width: calc(100% - 250px); /* Exclude sidebar width */
+        margin-left: 250px; /* Account for sidebar */
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .content {
+        width: 100%;  
+        height: 100vh;
+        margin-left: 250px; /* Make sure content starts after the sidebar */
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .sidebar {
+        transform: translateX(0); /* Always visible */
+        width: 250px;
+        height: 100vh;
+        position: fixed; /* Sidebar stays fixed */
+        top: 0;
+        left: 0;
+        bottom: 0; /* Make sure sidebar fills the entire height */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .container {
+        height: 100vh; /* Full viewport height */
+    }
+}

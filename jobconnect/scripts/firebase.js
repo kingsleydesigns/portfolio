@@ -105,3 +105,15 @@ export function monitorAuthState(onAuthenticated, onUnauthenticated) {
     });
 }
 
+//Add document to the request collection
+export async function addPostToDB(postBody) {
+    try {
+        const docRef = await addDoc(collection(db, "requests"), {
+            body: postBody
+        })
+        console.log("Document written with ID: ", docRef.id);
+    } catch (error) {
+    console.error(error.message);
+    }
+}
+

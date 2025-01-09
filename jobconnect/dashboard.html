@@ -6,62 +6,65 @@
     <title>Directreach - Dashboard</title>
     <link rel="stylesheet" href="styles/dashboard.css">
     <link rel="stylesheet" href="styles/dashboard-large.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="images/favicon1.png"  type="image/png">
 </head>
 <body>
-    <body>
-        <div class="container">
-            <div class="sidebar">
-                <div class="logo">
-                    <img src="images/directreach-logo1.png" alt="logo" class="logo-image">
-                    <h2>DirectReach</h2>
-                </div>
-                <a href="#" onclick="showTab('dashboard')">Dashboard</a>
-                <a href="#" onclick="showTab('email-requests')">Email Requests</a>
-                <a href="#" onclick="showTab('billing-plan')">Billing Plan</a>
-                <a href="#" onclick="showTab('profile')">Profile</a>
-                <div class="logout">
-                    <a href="#" onclick="logout()">Logout</a>
-                </div>
+    <header class="header">
+        <h1 id="page-title">Dashboard</h1>
+        <button class="hamburger" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">      
+                <img src="images/directreach-logo1.png" alt="logo" class="logo-image">              
+                <h2>DirectReach</h2>
             </div>
-            <div class="content">
-                <div id="dashboard" class="tab-content">
-                    <h1 id="welcome-message">Welcome</h1>
-                    <p>Here you can track your activity and manage your requests.</p>
-                </div>
-                <div id="email-requests" class="tab-content hidden">
-                    <h1>Email Requests</h1>
-                    <form>
-                        <div class="form-group">
-                            <label for="company-name">Company Name:</label>
-                            <textarea id="company-name" name="company-name" placeholder="Enter company name"></textarea>
-                        </div>
-                        <button type="submit">Submit Request</button>
-                    </form>
-                    <h2>Previous Requests</h2>
-                    <ul>
-                        <li>Request for xyz@example.com - <strong>Status: Pending</strong></li>
-                        <li>Request for abc@example.com - <strong>Status: Confirmed</strong></li>
-                    </ul>
-                </div>
-                <div id="billing-plan" class="tab-content hidden">
-                    <h1>Billing Plans</h1>
-                    <p>Select a plan that works best for you.</p>
-                    <ul>
-                        <li>Basic Plan - $20/month</li>
-                        <li>Pro Plan - $50/month</li>
-                        <li>Enterprise Plan - Contact us for pricing</li>
-                    </ul>
-                </div>
-                <div id="profile" class="tab-content hidden">
-                    <h1>Your Profile</h1>
-                    <p>Name: John Doe</p>
-                    <p>Email: johndoe@example.com</p>
-                    <button onclick="editProfile()">Edit Profile</button>
-                </div>
+            <a href="#" onclick="event.preventDefault(); showTab('dashboard'); updatePageTitle('Dashboard')"><i class="fas fa-home"></i>Dashboard</a>
+            <a href="#" onclick="event.preventDefault(); showTab('email-requests'); updatePageTitle('Email Requests')"><i class="fas fa-envelope"></i>Email Requests</a>
+            <a href="#" onclick="event.preventDefault(); showTab('billing-plan'); updatePageTitle('Billing Plan')"><i class="fas fa-credit-card"></i>Billing Plan</a>
+            <a href="#" onclick="event.preventDefault(); showTab('profile'); updatePageTitle('Profile')"><i class="fas fa-user"></i>Profile</a>
+            <div class="logout">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a>
             </div>
         </div>
-    
+        <div class="content">
+            <div id="dashboard" class="tab-content">
+                <h1 id="welcome-message">Welcome</h1>
+                <p>Here you can track your activity and manage your requests.</p>
+            </div>
+            <div id="email-requests" class="tab-content hidden">
+                <form>
+                    <div class="form-group">
+                        <label for="company-name">Company Name:</label>
+                        <textarea id="company-name" name="company-name" placeholder="Enter company name"></textarea>
+                    </div>
+                    <button id="submit-request" type="submit">Submit Request</button>
+                </form>
+                <h2>Previous Requests</h2>
+                <ul>
+                    <li>Request for xyz@example.com - <strong>Status: Pending</strong></li>
+                    <li>Request for abc@example.com - <strong>Status: Confirmed</strong></li>
+                </ul>
+            </div>
+            <div id="billing-plan" class="tab-content hidden">
+                <p>Select a plan that works best for you.</p>
+                <ul>
+                    <li>Basic Plan - $20/month</li>
+                    <li>Pro Plan - $50/month</li>
+                    <li>Enterprise Plan - Contact us for pricing</li>
+                </ul>
+            </div>
+            <div id="profile" class="tab-content hidden">
+                <p>Name: John Doe</p>
+                <p>Email: johndoe@example.com</p>
+                <button id="edit-profile" onclick="editProfile()">Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
   <script type="module" src="scripts/firebase.js"></script>
   <script type="module" src="scripts/dashboard.js">defer</script>
 </body>
