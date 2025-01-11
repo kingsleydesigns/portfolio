@@ -12,7 +12,9 @@ import {
 
 import { getFirestore,
         collection,
-        addDoc } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        addDoc,
+        updateDoc,
+        serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -106,10 +108,12 @@ export function monitorAuthState(onAuthenticated, onUnauthenticated) {
 }
 
 //Add document to the request collection
-export async function addPostToDB(postBody) {
+export async function addPostToDB(postBody, user) {
     try {
         const docRef = await addDoc(collection(db, "requests"), {
-            body: postBody
+            body: postBody,
+            uid: user.uid,
+            createdAt: serverTimestamp()
         })
         console.log("Document written with ID: ", docRef.id);
     } catch (error) {

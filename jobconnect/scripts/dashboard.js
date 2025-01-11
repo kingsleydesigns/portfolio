@@ -90,9 +90,10 @@ function personalizeWelcome() {
 function requestButtonPressed(event) {
     event.preventDefault(); // Prevent page reload
     const postBody = textarea.value;
+    const user = auth.currentUser;
 
     if (postBody.trim()) {
-        addPostToDB(postBody); // Add post to the database
+        addPostToDB(postBody, user); // Add post to the database
         clearInputField(textarea); // Clear the input field
     } else {
         console.log("Please enter a valid company name.");
