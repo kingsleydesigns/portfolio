@@ -146,8 +146,11 @@ a:hover {
 }
 
 .span-links {
-  text-decoration: underline blue;
-  color: grey;
+  color: steelblue;
+}
+
+.span-links:hover {
+  text-decoration: underline;
 }
 
 /*--/ Title A /--*/
