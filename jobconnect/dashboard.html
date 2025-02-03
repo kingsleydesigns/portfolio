@@ -34,6 +34,23 @@
             <div id="dashboard" class="tab-content">
                 <h1 id="welcome-message">Welcome</h1>
                 <p>Here you can track your activity and manage your requests.</p>
+                <div class="recent-requests">
+                    <h2>Recent Requests</h2>
+                    <table id="recentRequestsTable">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Date</th>
+                                <th>Request Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Recent requests will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                    <button id="view-more" onclick="event.preventDefault(); showTab('email-requests'); updatePageTitle('Email Requests')">View All Requests</button>
+                </div>
+                
             </div>
             <div id="email-requests" class="tab-content hidden">
                 <form>
@@ -43,11 +60,21 @@
                     </div>
                     <button id="submit-request" type="submit">Submit Request</button>
                 </form>
-                <h2>Previous Requests</h2>
-                <ul>
-                    <li>Request for xyz@example.com - <strong>Status: Pending</strong></li>
-                    <li>Request for abc@example.com - <strong>Status: Confirmed</strong></li>
-                </ul>
+                <div class="email-requests">
+                    <h2>Request History</h2>
+                    <table id="allRequestsTable">
+                        <thead>
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Date</th>
+                                <th>Request Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- All requests will be dynamically inserted here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div id="billing-plan" class="tab-content hidden">
                 <p>Select a plan that works best for you.</p>

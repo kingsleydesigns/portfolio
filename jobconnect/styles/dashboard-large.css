@@ -35,4 +35,43 @@
     .container {
         height: 100vh; /* Full viewport height */
     }
+
+    table {
+        font-size: 16px;
+    }
+
+    thead {
+        display: table-header-group; /* Show headers on larger screens */
+    }
+
+    thead th {
+        padding: 12px 15px;
+    }
+
+    tbody {
+        display: table-row-group;
+    }
+
+    tbody tr {
+        display: table-row;
+    }
+
+    tbody td {
+        display: table-cell;
+        padding: 12px 15px;
+        position: static;
+        text-align: left;
+    }
+
+    tbody tr:hover {
+        background-color: #f1f1f1; /* Hover effect on rows */
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f9f9f9; /* Alternate row colors */
+    }
+
+    tbody td::before {
+        content: none; /* Remove data-labels on larger screens */
+    }
 }

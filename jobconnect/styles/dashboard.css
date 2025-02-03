@@ -177,14 +177,60 @@ i {
     box-sizing: border-box;
 }
 
-#submit-request , #edit-profile {
+#submit-request , #edit-profile, #view-more {
     padding: 10px 20px;
     background-color: #1abc9c;
     color: white;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
-#edit-profile:hover , #submit-request:hover {
+#edit-profile:hover , #submit-request:hover, #view-more:hover {
     background-color: #16a085;
+}
+
+
+/* Base table styles (mobile first) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px; /* Smaller font size for mobile */
+    margin-bottom: 1rem; /* Space below table */
+}
+
+th, td {
+    padding: 6px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Responsive adjustments for smaller screens */
+
+/* Make the table scrollable horizontally if necessary */
+/* .table-container {
+    overflow-x: auto;
+}
+
+table {
+    min-width: 600px; /* Ensure table has a minimum width for small devices */
+ */
+
+/* Zebra striping for better readability */
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+/* Hover effect for table rows */
+tbody tr:hover {
+    background-color: #f1f1f1;
 }

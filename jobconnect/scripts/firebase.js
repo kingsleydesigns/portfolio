@@ -14,7 +14,8 @@ import { getFirestore,
         collection,
         addDoc,
         updateDoc,
-        serverTimestamp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
+        serverTimestamp,
+        onSnapshot } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-firestore.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -121,3 +122,8 @@ export async function addPostToDB(postBody, user) {
     }
 }
 
+export function fetchInRealtimeAndRenderPostsFromDB() {
+    onSnapshot(collection(db, "requests"), (querySnapshot) => {
+         
+    })
+}

@@ -93,11 +93,26 @@ function requestButtonPressed(event) {
     const user = auth.currentUser;
 
     if (postBody.trim()) {
-        addPostToDB(postBody, user); // Add post to the database
+        addPostToDB(postBody, user); // Add request to the database
         clearInputField(textarea); // Clear the input field
     } else {
         console.log("Please enter a valid company name.");
     }
+}
+
+
+function renderPost(postsEl, requestData) {
+    postsEl.innerHTML += `
+        <div class="post">
+            <div class="header">
+                <h3>${displayDate(requestData.createdAt)}</h3>
+                <img src="assets/emojis/${postData.mood}.png">
+            </div>
+            <p>
+                ${replaceNewlinesWithBrTags(requestData.body)}
+            </p>
+        </div>
+    `
 }
 
 
