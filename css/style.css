@@ -24,7 +24,9 @@ h6 {
 }
 
 a {
-  color: #1e1e1e;
+  /* Original color. Only changed for footer icons */
+  /* color: #1e1e1e; */    
+  color: white;
   transition: all 0.5s ease-in-out;
 }
 
@@ -214,7 +216,9 @@ a:hover {
 /*------/ Socials /------*/
 
 .socials {
-  padding: 1.5rem 0;
+  /* original padding. Only changed for footer icons */
+  /* padding: 1.5rem 0; */
+  padding: 0;
 }
 
 .socials ul li {
@@ -1101,6 +1105,7 @@ footer .credits a {
   color: #fff;
 }
 
+
 /*======================================
 //--//-->   CONtaCT FORM
 ======================================*/
@@ -1274,7 +1279,7 @@ footer .credits a {
 
 @media (max-width: 1024px) {
   .bg-image {
-    background-attachment: scroll;
+    /* background-attachment: scroll; */
   }
 }
 
